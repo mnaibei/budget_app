@@ -1,0 +1,23 @@
+<div class = "transaction_group">
+  <h2><%= @group.name %></h2>
+  <h2>$<%= @group.total_amount %></h2>
+</div>
+
+<div class = "transactions_container">
+  <% @actions.each do |action| %>
+    <div class = "transaction_details">
+      <div class = "transaction">
+      <img src="https://png.pngtree.com/png-vector/20190130/ourlarge/pngtree-various-goods-and-cars-png-image_643136.jpg" />
+        <h2><%= action.name %></h2>
+        <h3>$<%= action.amount %></h3>
+      </div>
+      <p><%= "#{action.created_at.day} #{action.created_at.strftime("%b")} #{action.created_at.year}" %></p>
+    </div>
+  <% end %>
+
+  <% if @actions.empty? %>
+    <div class="no_content">
+      <p>No transactions available yet!</p>
+    </div>
+  <% end %>
+</div>

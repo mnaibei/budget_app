@@ -1,0 +1,22 @@
+<div class = "groups_container">
+  <% @groups.each do |group| %>
+    <div class =  "group">
+      <div class = "details_container">
+      <img src="<%= group.icon %>" alt="group Icon" class="group-icon">
+        <h2><%= group.name %></h2>
+        <h4>$<%= group.total_amount %></h4>
+      </div>
+      <p><%= "#{group.created_at.day} #{group.created_at.strftime("%b")} #{group.created_at.year}" %></p>
+      <ul class = "group_actions">
+        <li><%= link_to "View Transactions", group_actions_path(group), class: 'btn btn-primary button' %></li>
+        <li><%= button_to "Remove", group_path(group), data: {
+        confirm: "Are you sure you want to delete: #{group.name}?",
+      }, method: :delete, class: 'btn btn-primary button', id: "remove_btn-#{group.id}" %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="group_btn">
+  <%= link_to "Add New Group", new_group_path, class: 'btn btn-success' %>
+</div>

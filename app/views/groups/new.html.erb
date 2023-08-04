@@ -1,0 +1,20 @@
+<%= form_with(model: @group, method: :post) do |form| %>
+<h1 class="text-center mb-3 form_title">Add a new Group</h1>
+
+<div class="mb-3">
+  <%= form.label :name, class: "form-label" %>
+  <%= form.text_field :name, class: "form-control", placeholder: "Name of group" %>
+</div>
+
+<div class="mb-3">
+  <%=form.label :icon, class: "form-label"%>
+  <%=form.url_field :icon, class: "form-control", placeholder: "url" %>
+</div>
+
+<div class="mb-3">
+  <%= form.label :user_id, class: "form-label" %>
+  <%= form.collection_select :user_id, User.all, :id, :name, prompt: "Select a user" %>
+</div>
+
+<%=form.submit "Save", class: 'btn btn-primary' %>
+<%end%>
