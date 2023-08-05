@@ -11,10 +11,5 @@
   <%=form.url_field :icon, class: "form-control", placeholder: "url" %>
 </div>
 
-<div class="mb-3">
-  <%= form.label :user_id, class: "form-label" %>
-  <%= form.collection_select :user_id, User.all, :id, :name, prompt: "Select a user" %>
-</div>
-
 <%=form.submit "Save", class: 'btn btn-primary' %>
 <%end%>

@@ -10,27 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_04_090915) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_05_154800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "actions", force: :cascade do |t|
-    t.bigint "author_id", null: false
-    t.string "name"
-    t.decimal "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_actions_on_author_id"
-  end
-
-  create_table "group_actions", force: :cascade do |t|
-    t.bigint "group_id", null: false
-    t.bigint "action_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["action_id"], name: "index_group_actions_on_action_id"
-    t.index ["group_id"], name: "index_group_actions_on_group_id"
-  end
 
   create_table "groups", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -41,14 +23,39 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_04_090915) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
+  create_table "groups_records", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_groups_records_on_group_id"
+    t.index ["record_id"], name: "index_groups_records_on_record_id"
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.string "name"
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_records_on_author_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "actions", "users", column: "author_id"
-  add_foreign_key "group_actions", "actions"
-  add_foreign_key "group_actions", "groups"
   add_foreign_key "groups", "users"
+  add_foreign_key "groups_records", "groups"
+  add_foreign_key "groups_records", "records"
+  add_foreign_key "records", "users", column: "author_id"
 end
