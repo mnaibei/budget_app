@@ -55,6 +55,10 @@ hr {
   background: transparent;
   border: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  align-items: flex-end;
 }
 
 .main-header {
