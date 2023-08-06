@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'groups#index'
+  # root to: 'groups#index'
   # root to: 'splash#splash'
 
   resources :groups, only: %i[index new create destroy] do
