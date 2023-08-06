@@ -11,11 +11,12 @@ Rails.application.routes.draw do
     end
 
     unauthenticated :user do
-      root to: 'devise/sessions#new', as: :unauthenticated_root
+      root to: 'splash#splash', as: :unauthenticated_root
     end
   end
 
   root to: 'groups#index'
+  # root to: 'splash#splash'
 
   resources :groups, only: %i[index new create destroy] do
     resources :records, only: %i[index new create]
