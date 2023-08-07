@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @groups = Group.order(created_at: :desc)
+    @groups = Group.includes(:user).order(created_at: :desc)
   end
 
   def show; end

@@ -2,7 +2,7 @@ class RecordsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @group = Group.find(params[:group_id])
+    @group = Group.includes(:records).find(params[:group_id])
     @records = @group.records.order(created_at: :desc)
   end
 
