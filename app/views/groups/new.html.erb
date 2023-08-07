@@ -1,18 +1,28 @@
 <%= render 'shared/navbar', back_link: groups_path, title: "New Group" %>
 
-<%= form_with(model: @group, method: :post, class:"add-form") do |form| %>
-<h1 class="form-title">Add a new Group</h1>
-<div class="form-fields">
-<div class="field">
-  <%= form.label :name, class: "form-label" %>
-  <%= form.text_field :name, class: "form-control", placeholder: "Name of group" %>
-</div>
+<%= form_with(model: @group, method: :post, class: "add-form") do |form| %>
+  <h1 class="form-title">Add a new Group</h1>
 
-<div class="field">
-  <%=form.label :icon, class: "form-label"%>
-  <%=form.url_field :icon, class: "form-control", placeholder: "url" %>
-</div>
-</div>
+  <!-- Display error messages if there are any -->
+  <% if @errors %>
+    <div class="error-message">
+      <% @errors.each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    </div>
+  <% end %>
 
-<%=form.submit "Save", class: 'submit-btn' %>
-<%end%>
+  <div class="form-fields">
+    <div class="field">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Name of group" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :icon, class: "form-label" %>
+      <%= form.url_field :icon, class: "form-control", placeholder: "url" %>
+    </div>
+  </div>
+
+  <%= form.submit "Save", class: 'submit-btn' %>
+<% end %>

@@ -32,6 +32,8 @@
 .field input[type="text"],
 .field input[type="url"],
 .field input[type="number"],
+.field input[type="email"],
+.field input[type="password"],
 .field .form-select {
   min-height: 50px;
 }
@@ -39,4 +41,20 @@
 .submit-btn {
   border: none;
   height: 40px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.new_user {
+  margin-top: 10px;
+}
+
+.login input[type="submit"] {
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+  border: none;
 }

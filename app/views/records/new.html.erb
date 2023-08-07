@@ -7,16 +7,25 @@
   <div class="field">
     <%= form.label :name, class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
+    <% if @record.errors.has_key?(:name) %>
+        <p class="error-message"><%= @record.errors[:name].first %></p>
+      <% end %>
   </div>
 
   <div class="field">
     <%= form.label :amount, class: "form-label" %>
     <%= form.number_field :amount, class: "form-control" %>
+    <% if @record.errors.has_key?(:amount) %>
+        <p class="error-message"><%= @record.errors[:amount].first %></p>
+      <% end %>
   </div>
 
   <div class="field">
     <%= form.label :group_ids, class: "form-label" %>
     <%= form.collection_select :group_ids, Group.all, :id, :name, {}, class: "form-select" %>
+     <% if @record.errors.has_key?(:group_ids) %>
+        <p class="error-message"><%= @record.errors[:group_ids].first %></p>
+      <% end %>
   </div>
   </div>
 

@@ -16,7 +16,7 @@
     <% end %>
   <% elsif controller_name != 'sessions' %>
     <%= link_to new_user_session_path, class: "icon text-end" do %>
-      <i class="fa fa-arrow-right"></i>
+      <div>Next</div>
     <% end %>
   <% else %>
     <%= link_to new_user_registration_path, class: "icon text-end" do %>
