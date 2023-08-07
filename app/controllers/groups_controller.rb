@@ -1,21 +1,21 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
   def index
-    @groups = Group.all
+    @groups = current_user.groups.includes(:records).order(created_at: :desc)
   end
 
   def show; end
 
   def new
-    @group = Group.new
+    @group = current_user.groups.build
   end
 
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.build(group_params)
 
     if @group.save
       redirect_to groups_path, notice: 'Group was successfully created!'
     else
-      puts @group.errors.full_messages # Output the errors to the console for debugging
       @errors = @group.errors.full_messages
       render :new, status: :unprocessable_entity
     end

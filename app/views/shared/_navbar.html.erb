@@ -1,0 +1,59 @@
+<header class="main-header">
+  <% if back_link %>
+    <a href="<%= back_link %>" class="icon-btn">
+      <i class="fa fa-arrow-left fa-lg"></i>
+    </a>
+  <% else %>
+    <!-- Add a button to trigger the offcanvas menu -->
+      <button type="button" class="icon-btn" id="toggleMenu">
+    <i class="fa fa-bars"></i>
+  </button>
+  <% end %>
+  <h1><%= title.upcase %></h1>
+  <% if user_signed_in? %>
+    <%= button_to destroy_user_session_path, method: :delete, class: "icon text-end" do %>
+      <i class="fa fa-user"></i> Logout
+    <% end %>
+  <% elsif controller_name != 'sessions' %>
+    <%= link_to new_user_session_path, class: "icon text-end" do %>
+      <div>Next</div>
+    <% end %>
+  <% else %>
+    <%= link_to new_user_registration_path, class: "icon text-end" do %>
+      <i class="fa fa-user-plus"></i>
+    <% end %>
+  <% end %>
+</header>
+
+<% if user_signed_in? %>
+<div class="offcanvas" id="offcanvasMenu">
+      <button type="button" class="close-btn" id="closeMenu" aria-label="Close">x</button>
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title" id="sidebarLabel">Budget App</h2>
+    </div>
+    <div class="offcanvas-body">
+      <div class="profile">
+        <span>User: <%= current_user.name.upcase %></span>
+      </div>
+      <div class="actions">
+      <i class="fa fa-cogs" aria-hidden="true"> <%= link_to "Account Settings", edit_user_registration_path, class: "action" %></i>
+        <hr>
+        <i class="fa fa-plus-circle" aria-hidden="true"> <%= link_to "Create Group", new_group_path, class: "action" %></i>
+        <hr>
+        <i class="fa fa-plus-circle" aria-hidden="true"> <a href="#" class="action">Create Transaction</a></i>
+        <hr>
+        <i class="fa fa-user" aria-hidden="true"> <a href="#" target="_blank" class="action">Author Profile</a></i>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  document.getElementById('toggleMenu').addEventListener('click', function() {
+    document.getElementById('offcanvasMenu').classList.toggle('show');
+  });
+
+  document.getElementById('closeMenu').addEventListener('click', function() {
+    document.getElementById('offcanvasMenu').classList.remove('show');
+  });
+</script>

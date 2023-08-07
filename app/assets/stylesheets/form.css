@@ -1,0 +1,60 @@
+.add-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.form-title {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.form-control {
+  min-width: 80%;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field input[type="text"],
+.field input[type="url"],
+.field input[type="number"],
+.field input[type="email"],
+.field input[type="password"],
+.field .form-select {
+  min-height: 50px;
+}
+
+.submit-btn {
+  border: none;
+  height: 40px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.new_user {
+  margin-top: 10px;
+}
+
+.login input[type="submit"] {
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+}
